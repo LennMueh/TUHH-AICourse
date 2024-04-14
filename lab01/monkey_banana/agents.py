@@ -97,10 +97,16 @@ class RuleBasedAgent(Agent):
     def choose_action(self, env: MonkeyBananaFOEnvironmentTask, verbose:str):
         
         observation = env.perceive()
+        print("Observe", observation)
         
         # TODO: Question 11
-        
-        if observation.is_monkey_up:
+        if observation.box_position < observation.banana_position:
+            return MonkeyBananaAction.MOVE_BOX_RIGHT
+        elif observation.box_position == observation.banana_position and not observation.is_monkey_up:
+            return MonkeyBananaAction.CLIMB
+        elif observation.box_position == observation.banana_position and observation.is_monkey_up:
+            return MonkeyBananaAction.GRAB
+        elif observation.is_monkey_up:
             return MonkeyBananaAction.GO_DOWN
         else:
             return MonkeyBananaAction.MOVE_BOX_LEFT
