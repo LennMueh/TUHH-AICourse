@@ -39,7 +39,9 @@ def question11():
     return
 
 def question12():
-    # TODO: Question 12
+    environment = MonkeyBananaFOEnvironmentTask(7, 2, 10)
+    agent = PlanningAgent()
+    agent.run(environment, 20)
     return
 
 def question15():
@@ -50,4 +52,4 @@ def question16():
     # TODO: Question 16
     return
 
-question11()
+question12()
